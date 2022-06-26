@@ -1,7 +1,4 @@
 body{
-    display: grid;
-    margin-left: 20%;
-    grid-template-columns: 25% 2% 72%;
     text-align: center;
     align-items: center;
     align-content: center;
@@ -9,10 +6,13 @@ body{
 .titulo{
     text-align: center;
 }
-.nombres{
-    border-style: solid;
-    padding: 2%;
-}
 .p5Canvas{
     border-style: solid;
+    display: block;
+    margin: auto;
+}
+.btn{
+    width: 1000px;
+    height: 40px;
+    margin-bottom: 20px;
 }

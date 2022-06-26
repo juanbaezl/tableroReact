@@ -2,11 +2,12 @@ class NameForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {value: '',
-                 response: '',
-                 isLoaded: false};
-
+                  color: '#000000',
+                  response: '',
+                  isLoaded: false};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleColorChange = this.handleColorChange.bind(this);
   }
 
   getName(){
@@ -18,6 +19,7 @@ class NameForm extends React.Component {
             this.setState({
                 isLoaded: true,
                 value: result.name,
+                color: result.color,
                 response: "Hello " + result.name + "!"
             });
         } else{
@@ -33,9 +35,13 @@ class NameForm extends React.Component {
     )
   }
 
+  handleColorChange(event) {
+    this.setState({color: event.target.value});
+  }
+
   handleChange(event) {
     this.setState({value: event.target.value});
-  }
+  } 
 
   reset(event){
     
@@ -44,14 +50,16 @@ class NameForm extends React.Component {
     }).then(this.setState({
         isLoaded: false,
         value: "",
-        response: ""
+        response: "",
+        color:"#000000"
     }))  
     event.preventDefault();
   }
 
   handleSubmit(event) {
     fetch("/setname?"+ new URLSearchParams({
-    name: this.state.value
+    name: this.state.value,
+    color: this.state.color
     }),{
         method: 'GET',
     }).then(res => res.json())
@@ -76,6 +84,7 @@ class NameForm extends React.Component {
           <label>
             Name: 
             <input type="text" value={this.state.value} onChange={this.handleChange} />
+            <input type="color" value={this.state.color} onChange={this.handleColorChange}/>
           </label>
           <input type="submit" value="Submit" />
           

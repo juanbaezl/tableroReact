@@ -34,25 +34,30 @@ public class WebSiteController {
 
     @GetMapping("/getcolor")
     public String getColor() {
-
-        return "";
+        String color = (String) request.getSession().getAttribute("color");
+        return "{\"color\":\"" + color + "\"}";
     }
 
     @GetMapping("/delname")
     public void delName() {
         request.getSession().removeAttribute("name");
+        request.getSession().removeAttribute("color");
     }
 
     @GetMapping("/setname")
-    public String setName(@RequestParam(value = "name", defaultValue = "Anónimo") String name) {
+    public String setName(@RequestParam(value = "name", defaultValue = "Anónimo") String name,
+            @RequestParam(value = "color", defaultValue = "black") String color) {
         request.getSession().setAttribute("name", name);
+        request.getSession().setAttribute("color", color);
         return "{\"response\":\"Hello " + name + "!\"}";
     }
 
     @GetMapping("/getname")
     public String getName() {
         String name = (String) request.getSession().getAttribute("name");
-        return "{\"name\":\"" + name + "\"}";
+        String color = (String) request.getSession().getAttribute("color");
+        return "{\"name\":\"" + name + "\",\n" +
+                "\"color\":\"" + color + "\"}";
     }
 
     public void sessionManagement() {
