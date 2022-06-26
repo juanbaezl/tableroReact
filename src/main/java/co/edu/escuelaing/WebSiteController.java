@@ -1,18 +1,18 @@
 package co.edu.escuelaing;
 
-import java.util.Enumeration;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
+@ComponentScan(basePackages = { "co.edu.escuelaing" })
 public class WebSiteController {
 
     @Resource
@@ -32,16 +32,15 @@ public class WebSiteController {
                 + ". " + "The server is Running!\"}";
     }
 
+    @GetMapping("/getcolor")
+    public String getColor() {
+
+        return "";
+    }
+
     @GetMapping("/delname")
     public void delName() {
         request.getSession().removeAttribute("name");
-    }
-
-    @GetMapping("/getnames")
-    public String getNames() {
-        Enumeration<String> nombres = request.getSession().getAttributeNames();
-        System.out.println(nombres.nextElement());
-        return "";
     }
 
     @GetMapping("/setname")

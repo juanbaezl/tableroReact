@@ -11,7 +11,7 @@ body{
 }
 .nombres{
     border-style: solid;
-    height: 500px;
+    padding: 2%;
 }
 .p5Canvas{
     border-style: solid;
