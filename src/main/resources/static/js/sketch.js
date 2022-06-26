@@ -14,10 +14,12 @@ function draw() {
     if (mouseIsPressed === true) {
         fill(colores);
         stroke(colores);
-        ellipse(mouseX, mouseY, 7, 7);
+        line(mouseX, mouseY, pmouseX, pmouseY);
         var json = {
             xPos: mouseX,
             yPos: mouseY,
+            pXPos: pmouseX,
+            pYPos: pmouseY,
             color: colores,
             borrar: false
         }
@@ -35,7 +37,7 @@ function stomp(){
             if(!json.borrar){
                 fill(json.color);
                 stroke(json.color);
-                ellipse(json.xPos, json.yPos, 7, 7);
+                line(json.xPos, json.yPos, json.pXPos, json.pYPos);
             } else {
                 clear();
                 background(220, 180, 200);
